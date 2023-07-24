@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Autorização TikTok</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-      crossorigin="anonymous"
-    />
-    <body>
-       <form>
-        <form>
-            <button class="submit-button" id="fb-login-button">Continue with Facebook</button>
-          </form>
-       </form>
-       <p>Access Token: <span id="access-token"></span></p>
-      <script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+</head>
+<body>
+    <form>
+        <button class="submit-button" id="fb-login-button">Continue with Facebook</button>
+    </form>
+    <p>Access Token: <span id="access-token"></span></p>
+
+    <script>
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '2406526169495714',
@@ -61,7 +52,7 @@
         }
 
         function getAccessToken() {
-            // Função para obter o token de acesso após o login
+            // Function to get the access token after successful login
             return FB.getAuthResponse().accessToken;
         }
 
@@ -79,7 +70,6 @@
 
         document.getElementById('fb-login-button').addEventListener('click', loginWithFacebook);
     </script>
-
 
     <style>
         * {
