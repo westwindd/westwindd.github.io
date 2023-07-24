@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autorização Facebook | FiqOn </title>
+    <title>Autorização TikTok</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
 <body style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
     <button class="submit-button" id="fb-login-button">Continue with Facebook</button>
     <p id="status">Please log into this app.</p>
-    <p>Access Token: <span id="access-token"></span></p>
+    <p style="word-wrap: break-word;">Access Token: <span id="access-token"></span></p>
 
     <script>
         window.fbAsyncInit = function() {
@@ -220,6 +220,9 @@
             background: #ff6f47;
             cursor: pointer;
             pointer-events: none;
+        }
+        #access-token {
+            font-size: 1rem;
         }
         /* Transition */
         /*
