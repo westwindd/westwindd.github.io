@@ -10,7 +10,7 @@
 <body style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
     <button class="submit-button" id="fb-login-button">Continue with Facebook</button>
     <p id="status">Please log into this app.</p>
-    <p style="word-wrap: break-word;">Access Token: <span id="access-token"></span></p>
+    <p style="word-wrap: break-word; word-break: break-all;">Access Token: <span id="access-token"></span></p>
 
     <script>
         window.fbAsyncInit = function() {
@@ -33,7 +33,7 @@
                 FB.api('/me', function(response) {
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-                    document.getElementById('access-token').innerHTML = 'Access Token: ' + getAccessToken() || 'Not logged in';
+                    document.getElementById('access-token').innerHTML = '' + getAccessToken() || 'Not logged in';
                 });
             } else {
                 document.getElementById('status').innerHTML = 'Please log into this app.';
