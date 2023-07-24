@@ -26,21 +26,22 @@
         };
 
         function statusChangeCallback(response) {
-            console.log('statusChangeCallback');
-            console.log(response);
+    console.log('statusChangeCallback');
+    console.log(response);
 
-            if (response.status === 'connected') {
-                console.log('Welcome! Fetching your information....');
-                FB.api('/me', function(response) {
-                    console.log('Successful login for: ' + response.name);
-                    document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-                    document.getElementById('access-token').innerHTML = 'Access Token: ' + getAccessToken() || 'Not logged in';
-                });
-            } else {
-                document.getElementById('status').innerHTML = 'Please log into this app.';
-                document.getElementById('access-token').innerHTML = 'Access Token: Not logged in';
-            }
-        }
+    if (response.status === 'connected') {
+        console.log('Welcome! Fetching your information....');
+        FB.api('/me', function(response) {
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+            document.getElementById('access-token').innerHTML = 'Access Token: ' + getAccessToken() || 'Not logged in';
+        });
+    } else {
+        console.log('Login process not completed.');
+        document.getElementById('status').innerHTML = 'Please log into this app.';
+        document.getElementById('access-token').innerHTML = 'Access Token: Not logged in';
+    }
+}
 
         function loginWithFacebook() {
             FB.login(
