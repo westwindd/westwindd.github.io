@@ -13,6 +13,8 @@
     <p style="word-wrap: break-word; word-break: break-all;">Access Token: <span id="access-token"></span></p>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        // Facebook Async Init function
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '1192135921471497',
@@ -24,6 +26,7 @@
             FB.AppEvents.logPageView();
         };
 
+        // Status change callback function
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
@@ -33,41 +36,45 @@
                 FB.api('/me', function(response) {
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-                    document.getElementById('access-token').innerHTML = '' + getAccessToken() || 'Not logged in';
+                    document.getElementById('access-token').innerHTML = getAccessToken() || 'Not logged in';
                 });
             } else {
                 document.getElementById('status').innerHTML = 'Please log into this app.';
-                document.getElementById('access-token').innerHTML = 'Access Token: Not logged in';
+                document.getElementById('access-token').innerHTML = 'Not logged in';
             }
         }
 
+        // Login with Facebook function
         function loginWithFacebook() {
+            console.log("Login button clicked");
             FB.login(
                 function(response) {
                     statusChangeCallback(response);
                 },
-                { scope: 'email,user_friends,leads_retrieval' } // Add any additional permissions you need
+                { scope: 'email,user_friends,leads_retrieval' }
             );
         }
 
+        // Function to get the access token after successful login
         function getAccessToken() {
-            // Function to get the access token after successful login
+            console.log("Getting access token");
             return FB.getAuthResponse().accessToken;
         }
 
+        // Load the SDK Asynchronously
         (function(d, s, id) {
-            var js,
-                fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
             js.src = 'https://connect.facebook.net/en_US/sdk.js';
             fjs.parentNode.insertBefore(js, fjs);
         })(document, 'script', 'facebook-jssdk');
 
-         document.getElementById('fb-login-button').addEventListener('click', loginWithFacebook);
+        // Bind click event to login button
+        document.getElementById('fb-login-button').addEventListener('click', loginWithFacebook);
+    });
+</script>
+
     </script>
 
     <style>
