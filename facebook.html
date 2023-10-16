@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autorização Facebook | FiqOn</title>
+    <title>Autorização Facebook | FiqOn </title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
@@ -12,54 +12,216 @@
     <p id="status">Please log into this app.</p>
     <p style="word-wrap: break-word; word-break: break-all;">Access Token: <span id="access-token"></span></p>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Facebook Async Init function
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '2406526169495714', // Replace with your Facebook App ID
-                    xfbml: true,
+    document.addEventListener('DOMContentLoaded', function(){
+        // Facebook Async Init function
+        window.fbAsyncInit = function() {
+            FB.init({
+                  appId:'2406526169495714',
+                  xfbml: true,
                     version: 'v16.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        // Status change callback function
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+
+            if (response.status === 'connected') {
+                console.log('Welcome! Fetching your information....');
+                FB.api('/me', function(response) {
+                    console.log('Successful login for: ' + response.name);
+                    document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+                    document.getElementById('access-token').innerHTML = getAccessToken() || 'Not logged in';
                 });
-                FB.AppEvents.logPageView();
-            };
-
-            // Status change callback function
-            function statusChangeCallback(response) {
-                console.log('statusChangeCallback');
-                console.log(response);
-
-                if (response.status === 'connected') {
-                    console.log('Welcome! Fetching your information....');
-                    FB.api('/me', function (response) {
-                        console.log('Successful login for: ' + response.name);
-                        document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-                        document.getElementById('access-token').innerHTML = getAccessToken() || 'Not logged in';
-                    });
-                } else {
-                    document.getElementById('status').innerHTML = 'Please log into this app.';
-                    document.getElementById('access-token').innerHTML = 'Not logged in';
-                }
+            } else {
+                document.getElementById('status').innerHTML = 'Please log into this app.';
+                document.getElementById('access-token').innerHTML = 'Not logged in';
             }
+        }
 
-            // Login with Facebook function
-            function loginWithFacebook() {
-                console.log("Login button clicked");
-                FB.login(
-                    function (response) {
-                        statusChangeCallback(response);
-                    },
-                    { scope: 'public_profile,email' } // Add the necessary permissions you need
-                );
-            }
+        // Login with Facebook function
+        function loginWithFacebook() {
+            console.log("Login button clicked");
+            FB.login(
+                function(response) {
+                    statusChangeCallback(response);
+                },
+                { scope: 'pages_manage_metadata,pages_read_user_content,pages_manage_ads,pages_manage_posts,pages_manage_engagement,instagram_shopping_tag_products,public_profile,leads_retrieval' }
+            );
+        }
 
-            // Function to get the access token after successful login
-            function getAccessToken() {
-                console.log("Getting access token");
-                return FB.getAuthResponse().accessToken;
-            }
-        });
+        // Function to get the access token after successful login
+        function getAccessToken() {
+            console.log("Getting access token");
+            return FB.getAuthResponse().accessToken;
+        }
+
+        // Load the SDK Asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'facebook-jssdk');
+        // Bind click event to login button
+        document.getElementById('fb-login-button').addEventListener('click', loginWithFacebook);
+    });
+</script>
     </script>
-    <!-- Include the Facebook SDK script asynchronously -->
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        body {
+            background-image: linear-gradient(120deg, #050c2c 0%, #1b3105 100%);
+            color: white;
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+        }
+        header {
+            font-size: 2rem;
+        }
+        header,
+        .submit-button {
+            margin: 1rem;
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            background-color: #0bbb14;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #102146;
+        }
+        form,
+        .name-form {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form input,
+        form button {
+            padding: 0.5rem;
+            font-size: 2rem;
+            border: none;
+            background: rgb(0, 0, 0);
+            border-radius: 10px;
+        }
+        form button {
+            color: #f2ddd7;
+            background: #011c0a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        form button:hover {
+            background: #379d05;
+            color: white;
+        }
+        .todo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .todo-list {
+            min-width: 30%;
+            list-style: none;
+        }
+        .todo {
+            margin: 0.5rem;
+            background: white;
+            font-size: 1.5rem;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 1s ease;
+        }
+        .filter-todo {
+            padding: 1rem;
+        }
+        .todo li {
+            flex: 1;
+        }
+        .trash-btn,
+        .complete-btn {
+            background: #ff6f47;
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .complete-btn {
+            background: rgb(11, 212, 162);
+        }
+        .todo-item {
+            padding: 0rem 0.5rem;
+        }
+        .fa-trash,
+        .fa-check {
+            pointer-events: none;
+        }
+        .fall {
+            transform: translateY(10rem) rotateZ(20deg);
+            opacity: 0;
+        }
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+        /*CUSTOM SELECTOR */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            border: 0 !important;
+            background-image: none;
+        }
+        /* Custom Select */
+        .select {
+            margin: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        select {
+            color: #ff6f47;
+            font-family: "Poppins", sans-serif;
+            cursor: pointer;
+            width: 12rem;
+        }
+        /* Arrow */
+        .select::after {
+            content: "\25BC";
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem;
+            background: #ff6f47;
+            cursor: pointer;
+            pointer-events: none;
+        }
+        #access-token {
+            font-size: 1rem;
+        }
+        /* Transition */
+        /*
+.select:hover::after {
+  transform: scale(1.5);
+}
+*/
+    </style>
 </body>
 </html>
