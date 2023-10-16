@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autorização Facebook | FiqOn </title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+</head>
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
+    <button class="submit-button" id="fb-login-button">Continue with Facebook</button>
+    <p id="status">Please log into this app.</p>
+    <p style="word-wrap: break-word; word-break: break-all;">Access Token: <span id="access-token"></span></p>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        // Facebook Async Init function
+        window.fbAsyncInit = function() {
+            FB.init({
+                  appId:'2406526169495714',
+                  xfbml: true,
+                    version: 'v16.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        // Status change callback function
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+
+            if (response.status === 'connected') {
+                console.log('Welcome! Fetching your information....');
+                FB.api('/me', function(response) {
+                    console.log('Successful login for: ' + response.name);
+                    document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+                    document.getElementById('access-token').innerHTML = getAccessToken() || 'Not logged in';
+                });
+            } else {
+                document.getElementById('status').innerHTML = 'Please log into this app.';
+                document.getElementById('access-token').innerHTML = 'Not logged in';
+            }
+        }
+
+        // Login with Facebook function
+        function loginWithFacebook() {
+            console.log("Login button clicked");
+            FB.login(
+                function(response) {
+                    statusChangeCallback(response);
+                },
+                { scope: 'pages_manage_metadata,pages_read_user_content,pages_manage_ads,pages_manage_posts,pages_manage_engagement,instagram_shopping_tag_products,public_profile,leads_retrieval' }
+            );
+        }
+
+        // Function to get the access token after successful login
+        function getAccessToken() {
+            console.log("Getting access token");
+            return FB.getAuthResponse().accessToken;
+        }
+
+        // Load the SDK Asynchronously
