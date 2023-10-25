@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="cssBPO.css">
+</head>
+<body>
+    <h1>User Management</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>APP ID</th>
+                <th>APP SECRET</th>
+                <th>URL/WEBHOOK</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+            <!-- Data rows go here -->
+        </tbody>
+    </table>
+    <form id="user-form">
+        <input type="text" id="appID" placeholder="APP ID" name="appID" required>
+        <input type="text" id="appSecret" placeholder="APP SECRET" name="appSecret" required>
+        <button class="submit-button" id="add-user-button">Add User</button>
+    </form>
+    <p id="status"></p>
+    <div id="myModal" class="modal"></div>
+    <div id="notification-modal" class="notification-modal">
+        <p id="notification-text"></p>
+    </div>
+    <div id="deleteUserModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete this user?</p>
+        <button id="confirmDelete">Yes</button>
+        <button id="cancelDelete">No</button>
+    </div>
+</div>
+    <script src="scriptBPO.js"></script>
+</body>
+</html>
