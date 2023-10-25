@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table.custom-table {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px 10px 0 0; /* Rounded top-left and top-right corners */
+    width: 90%;
+    margin: 1rem;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+table.custom-table {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px; /* Apply border-radius to the entire table */
+    width: 90%;
+    margin: 1rem;
+    border-collapse: collapse;
+}
+
+.notification-modal {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #141414;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    left: 10%;
+    top: 10%;
+    max-width: 25%; /* Set a maximum width for the modal */
+    max-height: 80vh; /* Set a maximum height relative to the viewport */
+    overflow: auto; /* Enable scrolling if the content overflows the modal */
+}
+
+.notification-modal .modal-content {
+    word-wrap: break-word; /* Allow text to wrap within the modal */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners for the modal */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #141414;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #309135;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #242a3f;
+}
+
+.notification-modal a {
+    color: white;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+.notification-modal p {
+    margin: 0;
+    padding: 1rem;
+}
+
+body {
+    background: linear-gradient(142deg, rgb(14 65 18) 0%, rgb(28 27 27) 60%);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+table {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    width: 90%;
+    margin: 1rem;
+    border-collapse: collapse;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button.submit-button {
+    width: 75%;
+    margin-top: 1rem; /* Add margin for spacing */
+    padding: 10px;
+}
+
+input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    margin: 0.5rem;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.url-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.url-container .truncated-url {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Center-align the buttons within the cells */
+.button-cell {
+    text-align: center;
+}
+
+/* Apply the 'button-cell' class to the cells containing buttons */
+td.button-cell {
+    text-align: center; /* Center-align the buttons */
+}
+
+button {
+    padding: 10px;
+    font-size: 0.9rem;
+    background-color: #309135;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+    margin: 0.5rem;
+    width: 75%;
+    position: relative;
+}
+
+.url-container button {
+    cursor: pointer;
+    font-size: 1rem;
+    color: #0bbb14;
+    width: 30%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #242a3f;
+}
+
+.eye-icon {
+    font-size: 1rem;
+    color: #0bbb14;
+}
+
+#status {
+    font-size: 0.8rem;
+}
+
+.full-url {
+    display: inline;
+}
+
+.truncated-url {
+    display: inline;
+}
+
+.read-more-btn, .copy-button {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #0bbb14;
+    width: 10%;
+    height: 3rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    table {
+        width: 95%;
+    }
+
+    .notification-modal {
+        /* Adjust the styles for smaller screens */
+        padding: 5px;
+        font-size: 0.8rem;
+    }
+}
