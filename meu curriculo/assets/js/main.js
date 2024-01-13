@@ -35,7 +35,28 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 
 
 /*=============== EMAIL JS ===============*/
+const contactForm = document.getElementById('contact-form'),
+      contactMessage = document.getElementById('contact-message');
+const sendEmail = (e) =>{
+    e.preventDefault()
+	console.log(e)
 
+    emailjs.sendForm('service_kirhniw', 'template_8hfqwlf', '#contact-form', 'bhRt8Oho3PjpQiGWS')
+                    .then(()=> {
+                        contactMessage.textContent = 'Message sent successfully'
+
+                        setTimeout(() =>{
+                            contactMessage.textContent = ''
+                        }, 5000)
+
+                        contactForm.reset()
+                    }, () => {
+                        contactMessage.textContent = 'Message not sent (service error)'
+
+                    })
+                    
+}
+contactForm.addEventListener('submit', sendEmail)
 
 /*=============== SHOW SCROLL UP ===============*/ 
 const scrollUp = () =>{
