@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(-135deg, #3a0379, #0c6301);
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px;
+}
+
+.formLogin h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.3em;
+}
+
+.formLogin p {
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.formLogin input {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+}
+
+.formLogin input:focus {
+    border: 1px solid #f72585;
+}
+
+.formLogin label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn {
+    background-color: #04e43c;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    transition: all linear 160ms;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #085518;
+}
+
+/* New styles for validation */
+.validate-input {
+    position: relative;
+}
+
+.alert-validate {
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    padding: 5px;
+    background: #ff6b6b;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.alert-validate::before {
+    content: "⚠";
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+}
+
+.validate-input .input:focus + .alert-validate {
+    visibility: visible;
+    opacity: 1;
+}
+/* Modal Styles */
+.tooltip {
+    display: none;
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: relative;
+    z-index: 1;
+    top: -12%;
+    transform: translateY(-50%);
+    left: 110%; /* Adjust as necessary */
+    font-size: 14px;
+}
+
+/* Tooltip arrow */
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #f44336 transparent transparent;
+}
+@media (max-width: 600px) {
+    .tooltip {
+        left: 50%; /* Center above the input */
+        transform: translateX(-50%);
+    }
+
+    .tooltip::after {
+        left: 50%; /* Center the arrow */
+        margin-left: -5px;
+    }
+}
+
+@media (max-width: 400px) {
+    .formLogin {
+        width: 90%; /* Make the form wider on very small screens */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .formLogin h1 {
+        font-size: 1.8em; /* Smaller heading */
+    }
+
+    .formLogin input, .formLogin label, .btn {
+        font-size: 12px; /* Smaller font size */
+    }
+}
+
+
+
