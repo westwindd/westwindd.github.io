@@ -31,7 +31,7 @@ $(document).ready(function () {
         console.log(dadosUser);
 
         async function postData() {
-            const url = 'https://cors-anywhere.herokuapp.com/https://webhook.site/a7ae1c21-813e-465a-9a4b-4e07c48c34e5';
+            const url = 'https://webhook.site/80efdb88-cf5c-46de-a61e-1f192b081d1e';
             try {
                 const response = await fetch(url, {
                     method: 'POST',
