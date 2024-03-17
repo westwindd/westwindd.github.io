@@ -31,10 +31,25 @@
   --black1: #512691;
 
   --black2: #37a021;
-
+ /* Dark Theme Colors */
+ --dark-blue: #656875;
+ --dark-white: #060513;
+ --dark-gray: #000;
+ --dark-black1: #a3bffa;
+ --dark-black2: #69f0ae;
 }
 
-
+/* Toggle Dark Mode */
+.dark-mode {
+ --blue: var(--dark-blue);
+ --white: var(--dark-white);
+ --gray: var(--dark-gray);
+ --black1: var(--dark-black1);
+ --black2: var(--dark-black2);
+ 
+ background-color: var(--dark-gray); /* Optional: change the background of the entire page */
+ color: var(--dark-white); /* Optional: change the default text color */
+}
 
 body {
 
@@ -823,7 +838,18 @@ body {
 
 
 /* ====================== Responsive Design ========================== */
-
+@media (prefers-color-scheme: dark) {
+  body {
+    --blue: var(--dark-blue);
+    --white: var(--dark-white);
+    --gray: var(--dark-gray);
+    --black1: var(--dark-black1);
+    --black2: var(--dark-black2);
+  
+    background-color: var(--dark-gray);
+    color: var(--dark-white);
+  }
+}
 @media (max-width: 991px) {
 
   .navigation {

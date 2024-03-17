@@ -1,5 +1,7 @@
 // add hovered class to selected list item
-
+document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+  });
 window.onload = function() {
   var currencySymbol = 'R$';
   var ctx = document.getElementById('financialChart').getContext('2d');
