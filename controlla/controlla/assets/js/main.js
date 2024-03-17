@@ -1,10 +1,10 @@
 const updateMainContent = (html) => {
-    document.getElementById('main-content').innerHTML = html;
+  document.getElementById('main-content').innerHTML = html;
 };
 
 const renderMembershipPage = () => {
-  
-    updateMainContent(`
+
+  updateMainContent(`
     <div class="topbar">
     <div class="toggle">
       <ion-icon name="menu-outline"></ion-icon>
@@ -35,11 +35,11 @@ const renderMembershipPage = () => {
 
     `);
 
-    // Add the initial membership card
-    addMembershipCard();
+  // Add the initial membership card
+  addMembershipCard();
 
-    // Event listener for the "Add" button
-    document.getElementById('addMembershipButton').addEventListener('click', addMembershipCard);
+  // Event listener for the "Add" button
+  document.getElementById('addMembershipButton').addEventListener('click', addMembershipCard);
 };
 
 const addMembershipCard = () => {
@@ -74,7 +74,7 @@ const addMembershipCard = () => {
 
 function renderDashBoard() {
 
-    document.getElementById('main-content').innerHTML = `
+  document.getElementById('main-content').innerHTML = `
     <div class="topbar">
     <div class="toggle">
       <ion-icon name="menu-outline"></ion-icon>
@@ -82,7 +82,6 @@ function renderDashBoard() {
     <div class="search">
       <label>
         <input type="text" placeholder="Search here">
-        <ion-icon name="search-outline"></ion-icon>
       </label>
     </div>
     <div class="user">
@@ -191,152 +190,78 @@ function renderDashBoard() {
           </tbody>
         </table>
       </div>
-      <!-- ================= New Customers ================ -->
-      <div class="recentCustomers">
-        <div class="cardHeader">
-          <h2>Recent Customers</h2>
-        </div>
-        <table>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>David <br> <span>Italy</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>Amit <br> <span>India</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>David <br> <span>Italy</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>Amit <br> <span>India</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>David <br> <span>Italy</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>Amit <br> <span>India</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>David <br> <span>Italy</span></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-            </td>
-            <td>
-              <h4>Amit <br> <span>India</span></h4>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+    
     `;
-    initializeChart();
+  initializeChart();
 };
 
 const initializeChart = () => {
-    var currencySymbol = 'R$';
-    var ctx = document.getElementById('financialChart').getContext('2d');
-    var financialChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'], // Example months
-            datasets: [
-                // Assuming this is your profits dataset
-                {
-                    label: 'Profits',
-                    data: [25.90, 700, 550, 800, 650, 900], // Example profit data
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.3)',
-                    fill: true,
-                    tension: 0.4
-                },
-                // Assuming this is your spending dataset
-                {
-                    label: 'Spending',
-                    data: [300, 400, 350, 500, 450, 600], // Example spending data
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.3)',
-                    fill: true,
-                    tension: 0.4
-                }
-                // Add other datasets as needed
-            ]
+  var currencySymbol = 'R$';
+  var ctx = document.getElementById('financialChart').getContext('2d');
+  var financialChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June'], // Example months
+      datasets: [
+        // Assuming this is your profits dataset
+        {
+          label: 'Profits',
+          data: [25.90, 700, 550, 800, 650, 900], // Example profit data
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.3)',
+          fill: true,
+          tension: 0.4
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                tooltip: {
-                    mode: 'index',
-                    callbacks: {
-                        afterBody: function (tooltipItems) {
-                            let profit = tooltipItems[0].parsed.y;
-                            let spending = tooltipItems[1].parsed.y;
-                            let balance = profit - spending;
-                            let balanceFormatted = balance.toFixed(2); // Ensures two decimal places
-                            let balanceDisplay = balance >= 0 ? `Positive (${currencySymbol}${balanceFormatted})` : `Negative (${currencySymbol}${Math.abs(balanceFormatted)})`;
-
-                            return `Balance: ${balanceDisplay}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function (value) {
-                            return currencySymbol + value.toFixed(2);
-                        }
-                    }
-                }
-            }
+        // Assuming this is your spending dataset
+        {
+          label: 'Spending',
+          data: [300, 400, 350, 500, 450, 600], // Example spending data
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.3)',
+          fill: true,
+          tension: 0.4
         }
-    });
+        // Add other datasets as needed
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          mode: 'index',
+          callbacks: {
+            afterBody: function (tooltipItems) {
+              let profit = tooltipItems[0].parsed.y;
+              let spending = tooltipItems[1].parsed.y;
+              let balance = profit - spending;
+              let balanceFormatted = balance.toFixed(2); // Ensures two decimal places
+              let balanceDisplay = balance >= 0 ? `Positive (${currencySymbol}${balanceFormatted})` : `Negative (${currencySymbol}${Math.abs(balanceFormatted)})`;
+
+              return `Balance: ${balanceDisplay}`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return currencySymbol + value.toFixed(2);
+            }
+          }
+        }
+      }
+    }
+  });
 };
 
 const navigationLinks = document.querySelectorAll(".navigation li");
 
 const activeLink = (e) => {
-    navigationLinks.forEach((item) => item.classList.remove("hovered"));
-    e.currentTarget.classList.add("hovered");
+  navigationLinks.forEach((item) => item.classList.remove("hovered"));
+  e.currentTarget.classList.add("hovered");
 };
 
 navigationLinks.forEach((item) => item.addEventListener("mouseover", activeLink));
@@ -347,15 +272,33 @@ const navigation = document.querySelector(".navigation");
 const main = document.querySelector(".main");
 
 // Event delegation for toggle functionality
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
   // Check if the clicked element has the class 'toggle' or is inside an element with the class 'toggle'
   const toggleElement = event.target.closest('.toggle');
 
   // If a toggle element was clicked, execute the toggle logic
   if (toggleElement) {
-      navigation.classList.toggle("active");
-      main.classList.toggle("active");
+    navigation.classList.toggle("active");
+    main.classList.toggle("active");
   }
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const brandNameElement = document.querySelector('.navigation .brand-name');
+  if (brandNameElement) {
+    brandNameElement.textContent = 'Controlla'; // Customize as needed
+  }
+  
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode'); // Toggle dark mode class on body
+    
+    // Change the icon based on the current theme
+    if (document.body.classList.contains('dark-mode')) {
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
+    } else {
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+    }
+  });
 });
 
 // Since the content is dynamically loaded, ensure your scripts run after the content is updated
@@ -366,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Now that content is loaded, you can safely query for elements like '.navigation .brand-name'
   const brandNameElement = document.querySelector('.navigation .brand-name');
   if (brandNameElement) {
-      brandNameElement.textContent = 'Controlla'; // Customize as needed
+    brandNameElement.textContent = 'Controlla'; // Customize as needed
   }
 });
 

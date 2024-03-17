@@ -52,7 +52,7 @@
  --black1: var(--dark-black1);
  --black2: var(--dark-black2);
  
- background-color: var(--dark-gray); /* Optional: change the background of the entire page */
+ background-color: var(--dark-blue); /* Optional: change the background of the entire page */
  color: var(--dark-white); /* Optional: change the default text color */
 }
 
@@ -685,7 +685,6 @@ body {
 
   display: grid;
 
-  grid-template-columns: 2fr 1fr;
 
   grid-gap: 30px;
 
@@ -704,7 +703,7 @@ body {
   min-height: 500px;
 
   background: var(--white);
-
+flex:1;
   padding: 20px;
 
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
