@@ -17,20 +17,25 @@
   box-sizing: border-box;
 
 }
+@media (prefers-color-scheme: light) {
+  body {
+    --blue: #060513;
 
-
+    --white: #dbdbdb;
+  
+    --gray: #f5f5f5;
+  
+    --black1: #512691;
+  
+    --black2: #37a021;
+    background-color: var(--blue);
+    color: var(--dark-white);
+  }
+}
 
 :root {
 
-  --blue: #060513;
-
-  --white: #dbdbdb;
-
-  --gray: #f5f5f5;
-
-  --black1: #512691;
-
-  --black2: #37a021;
+ 
  /* Dark Theme Colors */
  --dark-blue: #656875;
  --dark-white: #060513;

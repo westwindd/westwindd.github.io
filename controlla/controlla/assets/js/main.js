@@ -3,7 +3,22 @@ const updateMainContent = (html) => {
 };
 
 const renderMembershipPage = () => {
+  
     updateMainContent(`
+    <div class="topbar">
+    <div class="toggle">
+      <ion-icon name="menu-outline"></ion-icon>
+    </div>
+    <div class="search">
+      <label>
+        <input type="text" placeholder="Search here">
+        <ion-icon name="search-outline"></ion-icon>
+      </label>
+    </div>
+    <div class="user">
+      <img src="assets/imgs/customer01.jpg" alt="">
+    </div>
+  </div>
     <div class="membership-page">
   <h1>Memberships</h1>
   <p>Here you can manage your memberships.</p>
@@ -331,16 +346,27 @@ const toggle = document.querySelector(".toggle");
 const navigation = document.querySelector(".navigation");
 const main = document.querySelector(".main");
 
-toggle.addEventListener('click', () => {
-    navigation.classList.toggle("active");
-    main.classList.toggle("active");
+// Event delegation for toggle functionality
+document.addEventListener('click', function(event) {
+  // Check if the clicked element has the class 'toggle' or is inside an element with the class 'toggle'
+  const toggleElement = event.target.closest('.toggle');
+
+  // If a toggle element was clicked, execute the toggle logic
+  if (toggleElement) {
+      navigation.classList.toggle("active");
+      main.classList.toggle("active");
+  }
 });
 
+// Since the content is dynamically loaded, ensure your scripts run after the content is updated
 document.addEventListener('DOMContentLoaded', () => {
-    const brandNameElement = document.querySelector('.navigation .brand-name');
-    if (brandNameElement) {
-        brandNameElement.textContent = 'Controlla';
-    }
-});
+  // Initialize the dashboard or any other start-up logic
+  renderDashBoard();
 
+  // Now that content is loaded, you can safely query for elements like '.navigation .brand-name'
+  const brandNameElement = document.querySelector('.navigation .brand-name');
+  if (brandNameElement) {
+      brandNameElement.textContent = 'Controlla'; // Customize as needed
+  }
+});
 
