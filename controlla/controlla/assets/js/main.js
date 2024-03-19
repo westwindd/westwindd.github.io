@@ -1,7 +1,7 @@
 const updateMainContent = (html) => {
   document.getElementById('main-content').innerHTML = html;
 };
-
+//teste
 const renderMembershipPage = () => {
 
   updateMainContent(`
