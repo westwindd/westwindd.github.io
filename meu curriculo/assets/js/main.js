@@ -20,6 +20,26 @@ if(navClose){
 }
 
 /*=============== REMOVE MENU MOBILE ===============*/
+const timelineParagraphs = document.querySelectorAll('.timeline p');
+
+const addMorePadding = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const breakPoint = windowHeight * 0.9;
+
+    timelineParagraphs.forEach(paragraph => {
+        const elementOffset = paragraph.offsetTop;
+        const distance = elementOffset - scrollTop;
+
+        if (distance > breakPoint) {
+            paragraph.classList.add("more-padding");
+        } else {
+            paragraph.classList.remove("more-padding");
+        }
+    });
+};
+
+window.addEventListener('scroll', addMorePadding);
 /*=============== REMOVE MENU MOBILE ===============*/
 const navLink = document.querySelectorAll('.nav__link')
 
