@@ -109,3 +109,29 @@ const scrollActive = () =>{
 window.addEventListener('scroll', scrollActive)
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
+document.addEventListener("DOMContentLoaded", function() {
+    const homeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          homeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+  
+    const aboutObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          aboutObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+  
+    const homeTarget = document.querySelector('.animate-home');
+    const aboutTarget = document.querySelector('.animate-about');
+    
+    homeObserver.observe(homeTarget);
+    aboutObserver.observe(aboutTarget);
+  });
+  

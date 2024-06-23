@@ -6,19 +6,7 @@
   --header-height: 3.5rem;
 
   /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
-  /* 
-      Change favorite color
-      Default: hsl(162, 100%, 40%)
-      Orange: hsl(14, 100%, 65%) - Blue: hsl(210, 100%, 70%)
-      Pink: hsl(356, 100%, 75%) - Purple: hsl(250, 100%, 75%)
-
-      For more colors visit: https://colors.dopely.top/color-pedia
-      -> Choose any color 
-      -> click on tab (Color Conversion)
-      -> Copy the color mode (HSL)
-  */
-  --hue: 120; /* Green hue, typical for 'tech green' */
+  --hue: 15; /* Green hue, typical for 'tech green' */
   --first-color: hsl(var(--hue), 60%, 50%); /* Significantly darker tech green */
   --first-color-alt: hsl(var(--hue), 80%, 25%); /* Even darker for added contrast */
   --title-color: hsl(228, 8%, 95%); /* This remains unchanged */
@@ -26,11 +14,7 @@
   --body-color: hsl(228, 15%, 20%); /* This remains unchanged */
   --container-color: hsl(228, 15%, 15%); /* This remains unchanged */
 
-
-
-
   /*========== Font and typography ==========*/
-  /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
   --biggest-font-size: 2rem;
   --bigger-font-size: 1.25rem;
@@ -67,7 +51,6 @@
 
 /*=============== BASE ===============*/
 * {
-  /* border-sizing allows wheather to include the padding in the content-width or not, border-box ensures the padding is included in the content width avoid creating extra width space for padding */
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -90,17 +73,14 @@ body {
   color: var(--text-color);
 }
 
-
 input,
 textarea,
 button {
   outline: none;
   border: none;
 }
-/*===============timeline ===============*/
 
-
-
+/*=============== TIMELINE ===============*/
 .timeline {
   width: 80%;
   margin: 0 auto;
@@ -110,7 +90,7 @@ button {
 
 .card {
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px 0;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -118,9 +98,10 @@ button {
   display: grid;
   place-items: center;
 }
+
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .right-content, .left-content {
@@ -129,83 +110,45 @@ button {
   width: 40%;
   padding: 1% 2%;
 }
+
 .left-content {
-  border-right: 5px dotted #666; 
+  border-right: 5px dotted #666;
   text-align: right;
   padding-top: 15%;
 }
-.left-content p {
+
+.left-content p, .right-content p {
   margin: 150px 0 0;
 }
-.right-content p {
-  margin: 150px 0 0;
-}
+
 .timeline p {
-  -webkit-transition: all 0.7s ease-in-out;
-  -moz-transition: all 0.7s ease-in-out;
-  -ms-transition: all 0.7s ease-in-out;
-  -o-transition: all 0.7s ease-in-out;
-  transition: all 0.7s ease-in-out; 
+  transition: all 0.7s ease-in-out;
 }
+
 .left-content .more-padding {
   padding-right: 100px;
 }
+
 .right-content .more-padding {
   padding-left: 100px;
 }
 
-
+/*=============== HEXAGON ===============*/
 .hexagon {
   display: flex;
   position: relative;
-  width: 100px; /* adjust size as needed */
-  height: 57.74px;
+  width: 100px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
   margin: 28.87px 0;
-  background-color: #64C7CC;
+  background-color: transparent; /* Background color removed for better image visibility */
 }
 
-.hexagon:before,
-.hexagon:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-}
-
-.hexagon:before {
-  bottom: 100%;
-  border-bottom: 28.87px solid #64C7CC;
-}
-
-.hexagon:after {
-  top: 100%;
-  width: 0;
-  border-top: 28.87px solid #64C7CC;
-}
-
-.hexagon-in1 {
-  position: absolute;
+.hexagon img {
   width: 100%;
+  aspect-ratio: cos(30deg);
   height: 100%;
-  transform: rotate(120deg);
-}
-.hexagon-in1 img {
-  width: 100%;
-  height: auto;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
-
-.hexagon-in2 {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-60deg);
-}
-
-.hexagon-in2 img {
-  width: 100%;
-  height: auto;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  object-fit: cover; /* Ensures the image covers the entire area */
+  clip-path:polygon(-50% 50%,50% 100%,150% 50%,50% 0);
 }
 /*===============timeline ===============*/
 
@@ -452,7 +395,19 @@ svg {
   /* background-color: aqua; */
   fill: var(--first-color);
 }
-
+.animate-home.active {
+  animation: slide-up 1s ease-out forwards;
+}
+.animate-home {
+  opacity: 0;
+  transform: translateY(50px);
+}
+@keyframes slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /*=============== BUTTON ===============*/
 .button {
   display: inline-block;
@@ -471,6 +426,13 @@ svg {
 /*=============== ABOUT ===============*/
 .about__container {
   row-gap: 2.5rem;
+}
+.animate-about {
+  opacity: 0;
+  transform: translateY(50px);
+}
+.animate-about.active {
+  animation: slide-up 1s ease-out forwards;
 }
 
 .about__data {
